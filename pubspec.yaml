@@ -1,0 +1,10 @@
+name: fitness
+description: Simple gym fitness app (console demo)
+version: 1.0.0
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+dev_dependencies:
+  webdev: ^3.8.0
+  build_runner: ^2.11.0
+  build_web_compilers: ^4.4.9

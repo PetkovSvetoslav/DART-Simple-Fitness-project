@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fitness Gym (Dart only)</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 16px; }
+        .row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+        input, select, button { padding: 8px; }
+        pre { background: #111; color: #0f0; padding: 12px; border-radius: 6px; }
+        .card { border: 1px solid #ddd; padding: 12px; border-radius: 6px; margin-bottom: 12px; }
+    </style>
+</head>
+<body>
+<h2>Fitness Gym (Dart-only local website)</h2>
+
+<div class="card">
+    <h3>Register Person</h3>
+    <div class="row">
+        <input id="personId" type="number" placeholder="id" value="1" />
+        <input id="name" placeholder="name" value="Ivan Petrov" />
+        <select id="role">
+            <option value="trainee">trainee</option>
+            <option value="worker">worker</option>
+        </select>
+        <input id="number" placeholder="number" value="0888123456" />
+        <input id="email" placeholder="email" value="ivan@example.com" />
+        <button id="btnRegister">Register</button>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Card + Access</h3>
+    <div class="row">
+        <input id="cardPersonId" type="number" placeholder="personId" value="1" />
+        <select id="cardType">
+            <option value="monthly">monthly</option>
+            <option value="quarterly">quarterly</option>
+            <option value="sixMonthly">sixMonthly</option>
+            <option value="yearly">yearly</option>
+        </select>
+        <button id="btnAssignCard">Assign Card</button>
+        <button id="btnLogin">Login</button>
+        <button id="btnLogout">Logout</button>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Lockers</h3>
+    <div class="row">
+        <input id="lockerNumber" type="number" placeholder="lockerNumber" value="2" />
+        <input id="lockerPersonId" type="number" placeholder="personId" value="1" />
+        <button id="btnOccupy">Occupy</button>
+        <button id="btnRelease">Release</button>
+    </div>
+</div>
+
+<h3>Output</h3>
+<pre id="output"></pre>
+
+<!-- This loads the compiled Dart -->
+<script defer src="main.dart.js"></script>
+</body>
+</html>
