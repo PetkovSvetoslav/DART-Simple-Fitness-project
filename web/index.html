@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,12 +8,32 @@
         body { font-family: Arial, sans-serif; margin: 16px; }
         .row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
         input, select, button { padding: 8px; }
-        pre { background: #111; color: #0f0; padding: 12px; border-radius: 6px; }
         .card { border: 1px solid #ddd; padding: 12px; border-radius: 6px; margin-bottom: 12px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        .badge { display:inline-block; padding: 4px 8px; border-radius: 12px; background:#eee; }
+        .grid { display:grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap: 8px; }
+        .locker { border:1px solid #ddd; border-radius: 6px; padding: 10px; }
+        .free { background: #f7fff7; }
+        .busy { background: #fff7f7; }
+        .error { color: #b00020; font-weight: bold; }
     </style>
 </head>
 <body>
+
 <h2>Fitness Gym (Dart-only local website)</h2>
+
+<div class="card">
+    <div class="row" style="justify-content:space-between; align-items:center;">
+        <div><b>Active session:</b> <span id="sessionBadge" class="badge">none</span></div>
+        <div class="row">
+            <button id="btnSave">Save</button>
+            <button id="btnLoad">Load</button>
+            <button id="btnReset">Reset</button>
+        </div>
+    </div>
+    <div id="msg" class="error"></div>
+</div>
 
 <div class="card">
     <h3>Register Person</h3>
@@ -31,9 +51,10 @@
 </div>
 
 <div class="card">
-    <h3>Card + Access</h3>
+    <h3>Card + Authentication (scan)</h3>
     <div class="row">
         <input id="cardPersonId" type="number" placeholder="personId" value="1" />
+        <input id="cardCode" placeholder="card code (e.g. C-1001)" value="C-1001" />
         <select id="cardType">
             <option value="monthly">monthly</option>
             <option value="quarterly">quarterly</option>
@@ -41,7 +62,11 @@
             <option value="yearly">yearly</option>
         </select>
         <button id="btnAssignCard">Assign Card</button>
-        <button id="btnLogin">Login</button>
+    </div>
+
+    <div class="row">
+        <input id="scanCode" placeholder="scan card code" value="C-1001" />
+        <button id="btnScanLogin">Scan Login</button>
         <button id="btnLogout">Logout</button>
     </div>
 </div>
@@ -54,12 +79,27 @@
         <button id="btnOccupy">Occupy</button>
         <button id="btnRelease">Release</button>
     </div>
+
+    <div id="lockersGrid" class="grid"></div>
 </div>
 
-<h3>Output</h3>
-<pre id="output"></pre>
+<div class="card">
+    <h3>People</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th><th>Name</th><th>Role</th><th>Logged In</th><th>Last Login</th><th>Last Logout</th>
+        </tr>
+        </thead>
+        <tbody id="peopleBody"></tbody>
+    </table>
+</div>
 
-<!-- This loads the compiled Dart -->
+<div class="card">
+    <h3>Events</h3>
+    <ul id="eventsList"></ul>
+</div>
+
 <script defer src="main.dart.js"></script>
 </body>
 </html>
